@@ -76,7 +76,7 @@ public class BoardDAO {
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            sql = "SELECT * FROM BOARD";
+            sql = "SELECT * FROM BOARD ORDER BY BOARD_ID DESC";
             rs = stmt.executeQuery(sql);
             while(rs.next()) {
                 BoardVO boardVO = new BoardVO();
