@@ -5,8 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import static com.kh.mini_sample_0422.common.Common.CORS_ORIGIN;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = CORS_ORIGIN)
 @RestController
 @RequestMapping("/api/comment")
 public class CommentController {
