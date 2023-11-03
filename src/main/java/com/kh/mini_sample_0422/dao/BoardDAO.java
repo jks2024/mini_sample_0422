@@ -21,11 +21,12 @@ public class BoardDAO {
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            String sql = "INSERT INTO BOARD VALUES(board_sequence.NEXTVAL, ?, ?, ?, SYSDATE)";
+            String sql = "INSERT INTO BOARD (BOARD_ID, USER_ID, TITLE, CONTENT, REG_DATE, IMAGE_PATH) VALUES (board_sequence.NEXTVAL, ?, ?, ?, SYSDATE, ?)";
             pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, boardVO.getUserId());
             pStmt.setString(2, boardVO.getTitle());
             pStmt.setString(3, boardVO.getContent());
+            pStmt.setString(4, boardVO.getImg());
             int result = pStmt.executeUpdate();
             if(result == 1) isInsert = true;
         } catch(Exception e) {
@@ -84,6 +85,7 @@ public class BoardDAO {
                 boardVO.setUserId(rs.getString("USER_ID"));
                 boardVO.setTitle(rs.getString("TITLE"));
                 boardVO.setContent(rs.getString("CONTENT"));
+                boardVO.setImg(rs.getString("IMAGE_PATH"));
                 boardVO.setRegDate(rs.getDate("REG_DATE"));
                 boardList.add(boardVO);
             }
