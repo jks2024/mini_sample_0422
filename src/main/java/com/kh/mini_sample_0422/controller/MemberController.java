@@ -16,10 +16,10 @@ public class MemberController {
 
     // GET : 회원 조회
     @GetMapping("/member")
-    public ResponseEntity<List<MemberVO>> memberList(@RequestParam String name) {
-        System.out.println("NAME : " + name);
+    public ResponseEntity<List<MemberVO>> memberList(@RequestParam String id) {
+        System.out.println("ID : " + id);
         MemberDAO dao = new MemberDAO();
-        List<MemberVO> list = dao.memberSelect(name);
+        List<MemberVO> list = dao.memberSelect(id);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
