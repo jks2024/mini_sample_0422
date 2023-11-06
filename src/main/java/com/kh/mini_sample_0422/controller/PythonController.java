@@ -24,8 +24,6 @@ public class PythonController {
         System.out.println("author : " + author);
         System.out.println("content : " + content);
         return new ResponseEntity<>(true, HttpStatus.OK);
-
-
     }
     @PostMapping("/movies")
     public ResponseEntity<Boolean> getMovies(@RequestBody List<Map<String, String>> movieList) {
@@ -42,9 +40,6 @@ public class PythonController {
             //System.out.println(movieVO);
             dao.insertMovie(movieVO);
         }
-
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
-
-
 }

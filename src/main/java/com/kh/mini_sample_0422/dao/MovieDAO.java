@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MovieDAO {
     private Connection conn = null;
@@ -37,5 +39,31 @@ public class MovieDAO {
         Common.close(conn);
         return isInsert;
     }
-
+    // 영화 목록 조회
+    public List<MovieVO> selectMovieList() {
+        String sql = "SELECT * FROM MOVIES";
+        List<MovieVO> list = new ArrayList<>();
+        try {
+            conn = Common.getConnection();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while(rs.next()) {
+                MovieVO movieVO = new MovieVO();
+                movieVO.setRank(rs.getString("RANK"));
+                movieVO.setImage(rs.getString("IMAGE"));
+                movieVO.setTitle(rs.getString("TITLE"));
+                movieVO.setScore(rs.getString("SCORE"));
+                movieVO.setRate(rs.getString("RATE"));
+                movieVO.setReservation(rs.getString("RESERVATION"));
+                movieVO.setDate(rs.getString("OPEN_DATE"));
+                list.add(movieVO);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(rs);
+        Common.close(stmt);
+        Common.close(conn);
+        return list;
+    }
 }
