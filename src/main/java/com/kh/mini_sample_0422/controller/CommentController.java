@@ -26,9 +26,15 @@ public class CommentController {
         return new ResponseEntity<>(commentVO, HttpStatus.OK);
     }
     // POST : 댓글 등록
-    @PostMapping("/{boardId}")
-    public ResponseEntity<Boolean> commentRegister(@PathVariable Long boardId, @RequestBody CommentVO commentVO) {
-        return null;
+    @PostMapping("/new")
+    public ResponseEntity<Boolean> commentRegister(@RequestBody CommentVO commentVO) {
+        System.out.println("boardId : " + commentVO.getBoardId());
+        System.out.println("comment : " + commentVO.getContent());
+        System.out.println("userId : " + commentVO.getUserId());
+        CommentDAO dao = new CommentDAO();
+        boolean isTrue = dao.insertComment(commentVO);
+        System.out.println("댓글 등록 결과 : " + isTrue);
+        return new ResponseEntity<>(isTrue, HttpStatus.OK);
     }
     // PUT : 댓글 수정
     @PutMapping("/{boardId}/{commentId}")

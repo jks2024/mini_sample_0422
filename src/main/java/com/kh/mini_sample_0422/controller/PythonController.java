@@ -3,10 +3,7 @@ import com.kh.mini_sample_0422.dao.MovieDAO;
 import com.kh.mini_sample_0422.vo.MovieVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -40,6 +37,12 @@ public class PythonController {
             //System.out.println(movieVO);
             dao.insertMovie(movieVO);
         }
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
+    @DeleteMapping("/movies")
+    public ResponseEntity<Boolean> deleteMovies() {
+        MovieDAO dao = new MovieDAO();
+        dao.deleteMovie();
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }

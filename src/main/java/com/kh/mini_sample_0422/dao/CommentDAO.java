@@ -68,7 +68,7 @@ public class CommentDAO {
         try {
             conn = Common.getConnection();
             stmt = conn.createStatement();
-            String sql = "INSERT INTO COMMENTS VALUES(COMMENT_SEQ.NEXTVAL, ?, ?, ?, SYSDATE)";
+            String sql = "INSERT INTO COMMENTS VALUES(comment_sequence.NEXTVAL, ?, ?, ?, SYSDATE)";
             pStmt = conn.prepareStatement(sql);
             pStmt.setLong(1, commentVO.getBoardId());
             pStmt.setString(2, commentVO.getUserId());

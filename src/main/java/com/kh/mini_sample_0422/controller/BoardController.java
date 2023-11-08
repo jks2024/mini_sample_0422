@@ -20,7 +20,7 @@ public class BoardController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
     // GET : 게시글 상세 조회
-    @GetMapping("/{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<BoardVO> boardDetail(@PathVariable Long id) {
         BoardDAO dao = new BoardDAO();
         BoardVO boardVO = dao.selectBoardDetail(id);

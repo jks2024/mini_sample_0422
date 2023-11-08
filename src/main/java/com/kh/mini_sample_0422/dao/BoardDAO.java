@@ -111,6 +111,7 @@ public class BoardDAO {
                 boardVO.setUserId(rs.getString("USER_ID"));
                 boardVO.setTitle(rs.getString("TITLE"));
                 boardVO.setContent(rs.getString("CONTENT"));
+                boardVO.setImg(rs.getString("IMAGE_PATH"));
                 boardVO.setRegDate(rs.getDate("REG_DATE"));
             }
         } catch(Exception e) {

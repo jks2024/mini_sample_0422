@@ -66,4 +66,19 @@ public class MovieDAO {
         Common.close(conn);
         return list;
     }
+    // 영화 목록 전체 삭제
+    public boolean deleteMovie() {
+        String sql = "DELETE FROM MOVIES";
+        try {
+            conn = Common.getConnection();
+            pStmt = conn.prepareStatement(sql);
+            int result = pStmt.executeUpdate();
+            if(result == 1) return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        Common.close(pStmt);
+        Common.close(conn);
+        return false;
+    }
 }
